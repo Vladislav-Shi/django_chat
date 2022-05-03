@@ -1,0 +1,46 @@
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Title{% endblock title %}</title>
+    {% block style %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="icon" href="{% static 'django-icon.png' %}">
+    {% endblock %}
+</head>
+
+<body>
+    <div class="page">
+        <ul class="nav justify-content-end border-bottom">
+            {% if not user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'signin_page' %}">Вход</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup_page' %}">Регистрация</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="#">{{user.username}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'signout_page' %}">Выход</a>
+            </li>
+            {% endif %}
+        </ul>
+
+        {% block content %}
+        {% endblock content %}
+        <div class="footer">footer</div>
+    </div>
+</body>
+
+</html>

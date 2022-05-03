@@ -1,0 +1,12 @@
+.page{
+    overflow-y: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+.footer{
+    background-color: blue;
+}
+.img-on-card{
+    height: 200px;
+}
