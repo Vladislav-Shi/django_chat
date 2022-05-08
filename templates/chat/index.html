@@ -3,7 +3,6 @@
 {% load static %}
 {% block title %}Chat Rooms{% endblock title %}
 {% block content %}
-<div class="container mt-2">
 
     <h3>Куда хочешь попасть, друг?</h3>
     <h2>Чаты</h2>
@@ -26,18 +25,11 @@
         {% bootstrap_button "Создать" button_type="submit" button_class="btn-primary" %}
     </form>
     <h4 class="text-danger">{{message}}</h4>
-</div>
 
 <script>
-    document.querySelector('#room-name-input').focus();
-    document.querySelector('#room-name-input').onkeyup = function (e) {
-        if (e.keyCode === 13) { // enter, return
-            document.querySelector('#room-name-submit').click();
-        }
-    };
-
     document.querySelector('#room-name-submit').onclick = function (e) {
         var roomName = document.querySelector('#select-room').value;
+        console.log('roomName', roomName)
         if (roomName != '')
             window.location.pathname = '/chat/' + roomName + '/';
     };

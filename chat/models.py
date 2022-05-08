@@ -19,13 +19,14 @@ class MessageModel(models.Model):
     '''
     message = models.TextField(verbose_name='текст сообщения')
     # для вложений наверное можно использвоаеть JSON (так как вложений может быть много)
-    attacment = models.JSONField(verbose_name='Обьект со вложениями')
+    attacment = models.JSONField(verbose_name='Обьект со вложениями', blank=True, null=True)
     time = models.DateTimeField(
         verbose_name='Время отправки', db_index=True, auto_now=True)
     publisher = models.ForeignKey(
         verbose_name='Автор сообщения', to='ChatUser', on_delete=models.CASCADE)
     chat = models.ForeignKey(
-        verbose_name='Чат в котором сообщение', to='ChatModel', on_delete=models.CASCADE)
+        verbose_name='Чат в котором сообщение', to='ChatModel', on_delete=models.CASCADE,
+        related_name='message')
 
 
 class UploadFIleModel(models.Model):

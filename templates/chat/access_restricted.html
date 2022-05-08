@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block title %}Доступ ограничен{% endblock title %}
+{% block content %}
+<h2>Доступ ограничен</h2>
+<p class="text-warning">{{message}}</p>
+<p>Вернуться на <a href="{% url 'chat:index'%}">страницу выбора чатов</a></p>
+{% endblock content %}

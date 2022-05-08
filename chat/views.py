@@ -29,16 +29,27 @@ def index(request):
     add_form = AddChatForm()
     user_chats = ChatUser.objects.get(username=request.user.username)
     user_chats = user_chats.chat.all()
-    print(user_chats)
     context = {'user_chats': user_chats, 'form': add_form, 'message': message}
     return render(request, 'chat/index.html', context=context)
 
 
 def room(request, room_name):
+    '''
+    Странциа с чатом
+    '''
     if not request.user.is_authenticated:
         return redirect('/signup/?m=1')
+    try:
+        user_chat = ChatModel.objects.get(slug=room_name)
+    except:
+        ChatModel.DoesNotExist
+        return render(request, 'chat/access_restricted.html', 
+        context={'message': 'Вы не являетесь участником чата!'})
+    # Всех пользователей в этом чате
+    users_in_chat = user_chat.chatuser_set.all()
     return render(request, 'chat/room.html', {
-        'room_name': room_name
+        'room_name': room_name,
+        'users': users_in_chat
     })
 
 

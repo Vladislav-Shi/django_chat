@@ -25,7 +25,8 @@
                 <a class="nav-link" href="{% url 'signin_page' %}">Вход</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'signup_page' %}">Регистрация</a>
+                <a class="nav-link"
+                    href="{% url 'signup_page' %}">Регистрация</a>
             </li>
             {% else %}
             <li class="nav-item">
@@ -36,9 +37,10 @@
             </li>
             {% endif %}
         </ul>
-
-        {% block content %}
-        {% endblock content %}
+        <div class="container mt-2">
+            {% block content %}
+            {% endblock content %}
+        </div>
         <div class="footer">footer</div>
     </div>
 </body>
